@@ -10,7 +10,7 @@ Scenario: Verification of the Browser Windows
 	|New Window|
 	Then sample heading text is populated
 
-#Failed to get text from new window
+
 Scenario: Verification of the Browser Window Message
 	When I click button in "Browser Windows" from the table:
 	|Button|
