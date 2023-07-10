@@ -70,8 +70,8 @@ namespace SeleniumAutomationSolution.Tests
         
         public virtual void FeatureBackground()
         {
-#line 3
 #line 4
+#line 5
  testRunner.Given("I navigate to \"Widgets\" sections of the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -82,27 +82,27 @@ namespace SeleniumAutomationSolution.Tests
         public virtual void VerificationWidgetsForMultipleColors()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification widgets for multiple colors", ((string[])(null)));
-#line 6
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "ColorName1",
-                        "ColorName2"});
+                        "ColorName"});
             table1.AddRow(new string[] {
-                        "Blue",
+                        "Blue"});
+            table1.AddRow(new string[] {
                         "Black"});
-#line 7
- testRunner.When("I click \"Auto Complete\" to enter data from the table:", ((string)(null)), table1, "When ");
+#line 8
+ testRunner.When("I click Auto Complete to enter data from the table:", ((string)(null)), table1, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "ColorName1",
-                        "ColorName2"});
+                        "ColorName"});
             table2.AddRow(new string[] {
-                        "Blue",
+                        "Blue"});
+            table2.AddRow(new string[] {
                         "Black"});
-#line 10
+#line 12
  testRunner.Then("the data is submitted correctly from the table:", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -114,23 +114,23 @@ this.FeatureBackground();
         public virtual void VerificationWidgetsForSingleColor()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification widgets for single color", ((string[])(null)));
-#line 14
+#line 17
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "ColorName"});
             table3.AddRow(new string[] {
                         "Blue"});
-#line 15
- testRunner.When("I click \"Auto Complete\" to enter the data from the table:", ((string)(null)), table3, "When ");
+#line 18
+ testRunner.When("I click Auto Complete to enter the data from the table:", ((string)(null)), table3, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "ColorName"});
             table4.AddRow(new string[] {
                         "Blue"});
-#line 18
+#line 21
  testRunner.Then("the details are submitted correctly from the table:", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -142,9 +142,9 @@ this.FeatureBackground();
         public virtual void VerificationOfSelectDate()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of select date", ((string[])(null)));
-#line 22
+#line 25
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -155,8 +155,8 @@ this.FeatureBackground();
                         "August",
                         "2024",
                         "19"});
-#line 23
- testRunner.When("I click \"Date Picker\" to select date from the table:", ((string)(null)), table5, "When ");
+#line 26
+ testRunner.When("I click Date Picker to select date from the table:", ((string)(null)), table5, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Month",
@@ -166,7 +166,7 @@ this.FeatureBackground();
                         "August",
                         "2024",
                         "19"});
-#line 26
+#line 29
  testRunner.Then("the date is selected correctly with data from the table:", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -178,9 +178,9 @@ this.FeatureBackground();
         public virtual void VerificationOfSelectDateAndTime()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of select date and time", ((string[])(null)));
-#line 30
+#line 33
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -193,8 +193,8 @@ this.FeatureBackground();
                         "2024",
                         "19",
                         "03:30"});
-#line 31
- testRunner.When("I click \"Date Picker\" to select date and time from the table:", ((string)(null)), table7, "When ");
+#line 34
+ testRunner.When("I click Date Picker to select date and time from the table:", ((string)(null)), table7, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                         "Month",
@@ -206,7 +206,7 @@ this.FeatureBackground();
                         "2024",
                         "19",
                         "3:30"});
-#line 34
+#line 37
  testRunner.Then("the date and time is selected correctly with data from the table:", ((string)(null)), table8, "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -218,23 +218,23 @@ this.FeatureBackground();
         public virtual void VerificationOfToolTipInfoContent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of tool tip info content", ((string[])(null)));
-#line 38
+#line 41
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                         "ToolTipContent"});
             table9.AddRow(new string[] {
                         "Contrary"});
-#line 39
- testRunner.When("I click \"Tool Tips\" and mouser over the content", ((string)(null)), table9, "When ");
+#line 42
+ testRunner.When("I click Tool Tips and mouser over the content", ((string)(null)), table9, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                         "ToolTipContent"});
             table10.AddRow(new string[] {
                         "Contrary"});
-#line 42
+#line 45
  testRunner.Then("the info validated correctly for tool tip from the table:", ((string)(null)), table10, "Then ");
 #line hidden
             this.ScenarioCleanup();

@@ -10,21 +10,34 @@ using TechTalk.SpecFlow;
 namespace SeleniumAutomationSolution.Steps
 {
     [Binding]
-    public sealed class ElementsStepDefinition : BaseTest
+    public class ElementsStepDefinition
     {
+        Global global;
+        HomePage homePage;
+        TextBoxPage textBoxPage;
+        CheckBoxPage checkBoxPage; 
+        WebTablePage webTablePage;
+        ButtonsPage buttonsPage;
+        UploadAndDownloadPage uploadAndDownloadPage;
 
-        HomePage homePage = new HomePage(driver);
-        TextBoxPage textBoxPage = new TextBoxPage(driver);
-        CheckBoxPage checkBoxPage = new CheckBoxPage(driver);
-        WebTablePage webTablePage = new WebTablePage(driver);
-        ButtonsPage buttonsPage = new ButtonsPage(driver);
-        UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage(driver);
+        public ElementsStepDefinition(Global global)
+        {
+            this.global = global;
+            homePage = new HomePage(global.driver);
+            textBoxPage = new TextBoxPage(global.driver);
+            checkBoxPage = new CheckBoxPage(global.driver);
+            webTablePage = new WebTablePage(global.driver);
+            buttonsPage = new ButtonsPage(global.driver);
+            uploadAndDownloadPage = new UploadAndDownloadPage(global.driver);
 
-        [When(@"I submit ""(.*)"" details with data from the table:")]
-        public void WhenISubmitTheTextBoxDetailsWithDataFromTheTable(string subMenu, Table table)
+        }
+
+
+        [When(@"I submit Text Box details with data from the table:")]
+        public void WhenISubmitTheTextBoxDetailsWithDataFromTheTable(Table table)
         {          
 
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ExpandMenuAndClickItem("Elements", "Text Box");
 
             if (table.Header.Contains("FullName"))
                 textBoxPage.SetFullName(table.Rows.First()["FullName"]);
@@ -48,10 +61,10 @@ namespace SeleniumAutomationSolution.Steps
 
         //CheckkBox
 
-        [When(@"I expand the following ""(.*)"" in the page and select the checkbox's from the table:")]
-        public void WhenIExpandTheFollowingInThePageAndSelectTheCheckboxS(string subMenu, Table table)
+        [When(@"I expand the following Check Box in the page and select the checkbox's from the table:")]
+        public void WhenIExpandTheFollowingInThePageAndSelectTheCheckboxS(Table table)
         {
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ExpandMenuAndClickItem("Elements", "Check Box");
 
             if (table.Header.Contains("Home"))
                 checkBoxPage.ExpandHomeCheckBox();
@@ -59,7 +72,7 @@ namespace SeleniumAutomationSolution.Steps
             {
 
                 case "Desktop":
-                    if (table.Header.Contains("Desktop"))
+                    if (table.Header.Contains("Expand"))
                     {
                         checkBoxPage.ClickOnCheckBox("Desktop", table.Rows.First()["Desktop"]);
                     }
@@ -110,47 +123,49 @@ namespace SeleniumAutomationSolution.Steps
 
         //WebTables
      
-        [When(@"I update ""(.*)"" details with data from the table:")]
-        public void WhenIUpdateDetailsWithDataFromTheTable(string subMenu, Table table)
+        [When(@"I search details of the user in Web Tables page")]
+        public void WhenIUpdateDetailsWithDataFromTheTable(Table table)
         {
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ExpandMenuAndClickItem("Elements", "Web Tables");
             webTablePage.SetSearchBoxValue(table.Rows.First()["FirstName"]);
             webTablePage.ClickEditAction();
             
         }
 
 
-        [When(@"I Edit ""(.*)"" of the user and submit with data from the table:")]
-        public void WhenIEditOfTheUserAndSubmitWithDataFromTheTable(string userFormField, Table table)
+        [When(@"I update ""(.*)"" of the user")]
+        public void WhenIEditOfTheUserAndSubmitWithDataFromTheTable(string userFormField)
         {
-           webTablePage.SetUserFormValue(userFormField,table);
+            string age = new Random().Next(10,90).ToString();
+            global.dynamicDate= age;
+            webTablePage.SetUserFormValue(userFormField, age);
             webTablePage.ClickSubmitButton();
             
         }
 
-        [Then(@"the new value is populated with data from the table:")]
-        public void ThenTheNewValueOfIsPopulatedWithDataFromTheTable(Table table)
+        [Then(@"the age is successfully updated in web table")]
+        public void ThenTheNewValueOfIsPopulatedWithDataFromTheTable()
         {
-            Assert.AreEqual(table.Rows.First()["Age"],webTablePage.GetValuefromTable());
-
+            string expectedValue = global.dynamicDate;
+            Assert.AreEqual(expectedValue, webTablePage.GetValuefromTable());
         }
 
 
         
         //Buttons
 
-        [When(@"I click ""(.*)"" from the table:")]
-        public void WhenIClickFromTheTable(string subMenu, Table table)
+        [When(@"I click following button from Buttons page")]
+        public void WhenIClickFromTheTable(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Elements", "Buttons");
             buttonsPage.ClickButton(table.Rows.First()["Button"]);
         }
 
-        [Then(@"message is populated for button from table :")]
+        [Then(@"the message is populated in the page")]
         public void ThenButtonTextIsPopulated(Table table)
         {
-            switch (table.Rows.First()["Button"])
+            switch (table.Rows.First()["Message"])
             {
                 case "Double Click Me":
                     Assert.AreEqual("You have done a double click", buttonsPage.GetButtonMessage());
@@ -168,11 +183,11 @@ namespace SeleniumAutomationSolution.Steps
         }
 
         //Upload and download
-        [When(@"I click ""(.*)"" for file")]
-        public void WhenIClick(string subMenu)
+        [When(@"I click Upload and Download for file")]
+        public void WhenIClick()
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Elements", "Upload and Download");
             uploadAndDownloadPage.ClickUploadFile();            
             
         }
@@ -182,6 +197,7 @@ namespace SeleniumAutomationSolution.Steps
         {
             Assert.AreEqual(@"C:\fakepath\sampleFile.jpeg", uploadAndDownloadPage.GetUploadOutputText());
             Assert.AreEqual(true, uploadAndDownloadPage.ClickDownloadButton());
+            uploadAndDownloadPage.DeleteFilesAndDirectory();
             
          }
 

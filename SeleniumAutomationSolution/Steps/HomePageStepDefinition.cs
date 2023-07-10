@@ -8,14 +8,19 @@ using TechTalk.SpecFlow;
 namespace SeleniumAutomationSolution.Steps
 {
     [Binding]
-    public sealed class HomePageStepDefinition : BaseTest
+    public class HomePageStepDefinition 
     {
-        
+        Global global;
+
+        public HomePageStepDefinition(Global global)
+        {
+            this.global = global;
+        }
 
         [Given(@"I navigate to ""(.*)"" sections of the homepage")]
         public void GivenINavigateToSectionOfTheHomepage(string sectionTitle)
         {
-            HomePage homePageNew = new HomePage(driver);
+            HomePage homePageNew = new HomePage(global.driver);
             homePageNew.ClickOnSectionWith(sectionTitle);
         }
 

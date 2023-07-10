@@ -1,9 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumAutomationSolution.Pages
 {
@@ -19,7 +15,5 @@ namespace SeleniumAutomationSolution.Pages
             d.SwitchTo().DefaultContent();
             d.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(waitsec));
         }
-       
-
     }
 }

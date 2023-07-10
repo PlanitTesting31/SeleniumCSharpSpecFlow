@@ -8,13 +8,13 @@
     <Setting Name="WaitTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="URL" Type="System.String" Scope="Application">
+    <Setting Name="URL_TEST" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://demoqa.com/</Value>
     </Setting>
     <Setting Name="Environment" Type="SeleniumAutomationSolution.Environment.EnvironmentType" Scope="Application">
-		<Value Profile="(Default)">Test</Value> />
-		</Setting>
-    <Setting Name="URL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="URL_SIT" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://demoqa.com/</Value>
     </Setting>
   </Settings>

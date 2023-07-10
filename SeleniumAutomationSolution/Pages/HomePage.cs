@@ -1,23 +1,18 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using SeleniumAutomationSolution.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SeleniumAutomationSolution.Pages
 {
     class HomePage: BasePage
     {
-         private readonly IWebDriver d;
+         private readonly IWebDriver driver;
 
         public HomePage(IWebDriver driver)
             : base(driver)
         {
-             this.d = driver;
+             this.driver = driver;
         }
 
         //Selectors
@@ -32,30 +27,30 @@ namespace SeleniumAutomationSolution.Pages
         //Common function for all title card navigations
         public void ClickOnSectionWith(string title)
         {
-            IWebElement ele = UICommon.GetElement(Section(title),d);
-            UICommon.MoveToElement(ele,d);
-            UICommon.WaitUntilDisplayed(Section(title),d);
-            new Actions(d).MoveToElement(ele).Click().Perform();
+            IWebElement ele = UICommon.GetElement(Section(title),driver);
+            UICommon.MoveToElement(ele,driver);
+            UICommon.WaitUntilDisplayed(Section(title),driver);
+            new Actions(driver).MoveToElement(ele).Click().Perform();
         }
 
         public void ExpandMenuAndClickItem(string menu, string tiltle)
         {
-            IWebElement HeaderMenu = ElementsMenu(menu).WaitUntilDisplayed(d);
-            IWebElement SubMenuItem = d.FindElement(ElementsSubMenu(tiltle));
+            IWebElement HeaderMenu = ElementsMenu(menu).WaitUntilDisplayed(driver);
+            IWebElement SubMenuItem = driver.FindElement(ElementsSubMenu(tiltle));
             if (!SubMenuItem.Displayed)
             {
                 HeaderMenu.Click();
             }
             Thread.Sleep(5000);
-            new Actions(d).MoveToElement(SubMenuItem).Click().Perform();
+            new Actions(driver).MoveToElement(SubMenuItem).Click().Perform();
             //ElementsSubMenu(tiltle).WaitUntilDisplayed(d).Click();
-            ((IJavaScriptExecutor)d).ExecuteScript("arguments[0].click();", SubMenuItem);
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", SubMenuItem);
             
         }
 
-        public void ScrollBar()
+        public void ScrollToBottom()
         {
-            UICommon.VerticalScrollBar(d);
+            UICommon.VerticalScrollBar(driver);
         }
 
 

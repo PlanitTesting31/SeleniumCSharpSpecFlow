@@ -6,8 +6,8 @@ namespace SeleniumAutomationSolution.Environment
     {
         [Description("Test")]
         Test = 0,
-        [Description("UAT")]
-        UAT = 1,
+        [Description("SIT")]
+        SIT = 1,
 
     }
 }

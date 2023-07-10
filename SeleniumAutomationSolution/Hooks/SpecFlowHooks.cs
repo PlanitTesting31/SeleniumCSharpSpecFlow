@@ -13,10 +13,13 @@ using TechTalk.SpecFlow;
 namespace SeleniumAutomationSolution.Tests
 {
     [Binding]
-    public sealed class SpecFlowHooks :BaseTest
+    public sealed class SpecFlowHooks
     {
-      //  protected static IWebDriver driver;
-       // protected TestEnvironment environment;
+        Global global;
+      public SpecFlowHooks(Global global)
+        {
+            this.global = global;
+        }
 
         [BeforeScenario]
         public void BeforeScenario()
@@ -29,27 +32,27 @@ namespace SeleniumAutomationSolution.Tests
             switch (Properties.Settings.Default.Browser)
             {
                 case BrowserType.Firefox:
-                    driver = new FirefoxDriver();
+                    global.driver = new FirefoxDriver();
                     break;
                 case BrowserType.IE:
-                    driver = new InternetExplorerDriver(options);
+                    global.driver = new InternetExplorerDriver(options);
                     break;
                 case BrowserType.Chrome:
-                    driver = new ChromeDriver();
+                    global.driver = new ChromeDriver();
                     break;
                 default:
                     throw new ArgumentException("Browser Type Invalid");
             }
 
-            driver.Navigate().GoToUrl(TestEnvironment.GetEnvironment().Url);
-            driver.Manage().Window.Maximize();
+            global.driver.Navigate().GoToUrl(TestEnvironment.GetEnvironment().Url);
+            global.driver.Manage().Window.Maximize();
 
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
-            driver.Quit();
+            global.driver.Quit();
             switch (Properties.Settings.Default.Browser)
             {
                 case BrowserType.Firefox:

@@ -10,19 +10,28 @@ using TechTalk.SpecFlow;
 namespace SeleniumAutomationSolution.Steps
 {
     [Binding]
-    public sealed class InteractionsStepDefinition : BaseTest
+    public sealed class InteractionsStepDefinition
     {
-        HomePage homePage = new HomePage(driver);
-        SortListPage sortListPage = new SortListPage(driver);
-        DragAndDropPage dragAndDropPage = new DragAndDropPage(driver);
 
+        Global global;
+        HomePage homePage;
+        SortListPage sortListPage;
+        DragAndDropPage dragAndDropPage;
 
-        [When(@"I click list in ""(.*)"" from the table:")]
-        public void WhenIClickListInFromTheTable(string subMenu)
+        public InteractionsStepDefinition(Global global)
+        {
+            this.global = global;
+            homePage = new HomePage(global.driver);
+            sortListPage = new SortListPage(global.driver);
+            dragAndDropPage = new DragAndDropPage(global.driver);
+        }
+
+        [When(@"I click list in Sortable")]
+        public void WhenIClickListInFromTheTable()
         {
 
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Interactions", "Sortable");
             sortListPage.SortTheList();
         }
 
@@ -33,23 +42,23 @@ namespace SeleniumAutomationSolution.Steps
             foreach (string e in beforeSortText)
             {
                 Console.WriteLine(string.Join(",", e));
-                //Console.WriteLine(e);
+                
             }
             IList<string> afterSortText = sortListPage.GetAfterSortList();
             foreach (string e in afterSortText)
             {
                  Console.WriteLine(string.Join(",", e));
-               // Console.WriteLine(e);
+               
             }
             Assert.AreNotEqual(beforeSortText,afterSortText);
         }
 
         //Drag and drop
-        [When(@"I do simple drag and drop in ""(.*)""")]
-        public void WhenIDoSimpleDragAndDropIn(string subMenu)
+        [When(@"I do simple drag and drop in Droppable")]
+        public void WhenIDoSimpleDragAndDropIn()
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Interactions", "Droppable");
             dragAndDropPage.PerformDragAndDrop();
 
         }

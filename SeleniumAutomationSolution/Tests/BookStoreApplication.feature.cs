@@ -86,22 +86,10 @@ namespace SeleniumAutomationSolution.Tests
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "UserName",
-                        "Password"});
-            table1.AddRow(new string[] {
-                        "BookStore",
-                        "Testing@123"});
 #line 7
- testRunner.When("I  \"Login\" with details from the table:", ((string)(null)), table1, "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "UserName"});
-            table2.AddRow(new string[] {
-                        "BookStore"});
-#line 10
- testRunner.Then("user login is successful with details from the table:", ((string)(null)), table2, "Then ");
+ testRunner.When("I login into the book store application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("user login is successfull", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

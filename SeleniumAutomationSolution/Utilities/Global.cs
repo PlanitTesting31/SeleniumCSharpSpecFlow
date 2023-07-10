@@ -13,13 +13,10 @@ using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution
 {
-    [TestClass]
-    public abstract class BaseTest
+    public class Global
     {
-        
-        protected static IWebDriver driver;
-        protected TestEnvironment environment;
-        public dynamic sharedScenarioBuffer;
-        
+        public IWebDriver driver;
+        public dynamic sharedScenarioBuffer = new System.Dynamic.ExpandoObject();
+        public string dynamicDate;
     }
 }

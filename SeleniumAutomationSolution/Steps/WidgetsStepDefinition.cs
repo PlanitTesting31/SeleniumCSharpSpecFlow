@@ -11,25 +11,31 @@ using TechTalk.SpecFlow;
 namespace SeleniumAutomationSolution.Steps
 {
     [Binding]
-    public sealed class WidgetsStepDefinition : BaseTest
+    public class WidgetsStepDefinition
     {
-        HomePage homePage = new HomePage(driver);
-        AutoCompleteTextBoxPage autoCompleteTextBoxPage = new AutoCompleteTextBoxPage(driver);
-        DatePickerPage datePickerPage = new DatePickerPage(driver);
-        ToolTipPage toolTipPage = new ToolTipPage(driver);
+        HomePage homePage;
+        AutoCompleteTextBoxPage autoCompleteTextBoxPage;
+        DatePickerPage datePickerPage;
+        ToolTipPage toolTipPage;
+        Global global;
 
-        [When(@"I click ""(.*)"" to enter data from the table:")]
-        public void WhenIClickToEnterDataFromTheTable(string subMenu, Table table)
+        public WidgetsStepDefinition(Global global)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
-            //To implement both colors
-            List<string> colorList = new List<string>();
-            colorList.Add(table.Rows.First()["ColorName1"]);
-            colorList.Add(table.Rows.First()["ColorName2"]);
-            for(int i=0; i< colorList.Count();i++)
+            this.global = global;
+             homePage = new HomePage(global.driver);
+             autoCompleteTextBoxPage = new AutoCompleteTextBoxPage(global.driver);
+             datePickerPage = new DatePickerPage(global.driver);
+             toolTipPage = new ToolTipPage(global.driver);
+        }
+
+        [When(@"I click Auto Complete to enter data from the table:")]
+        public void WhenIClickToEnterDataFromTheTable(Table table)
+        {
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Widgets", "Auto Complete");
+            for(int i=0; i< table.Rows.Count; i++)
             {
-                autoCompleteTextBoxPage.SetAutoCompleteMultipleTextBox(colorList[i]);
+                autoCompleteTextBoxPage.SetAutoCompleteMultipleTextBox(table.Rows[i]["ColorName"]);
             }
 
         }
@@ -37,26 +43,18 @@ namespace SeleniumAutomationSolution.Steps
         [Then(@"the data is submitted correctly from the table:")]
         public void ThenTheDataIsSubmittedCorrectly(Table table)
         {
-            //List of colors from table
-            List<string> colorListFromTable = new List<string>();
-            colorListFromTable.Add(table.Rows.First()["ColorName1"]);
-            colorListFromTable.Add(table.Rows.First()["ColorName2"]);
-
-            //Color list updated from UI
-            List<string> colorList = new List<string>();
-            colorList.Add(autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult()[0]);
-            colorList.Add(autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult()[1]);
-            for (int i = 0; i < colorList.Count(); i++)
+            for (int i = 0; i < table.Rows.Count(); i++)
             {
-                Assert.AreEqual(colorListFromTable[i], colorList[i]);
+                Assert.IsTrue(autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult().Contains(table.Rows[i]["ColorName"]),
+                    table.Rows[i]["ColorName"]+ "not found in the list : "+ autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult());
             }
         }
 
-        [When(@"I click ""(.*)"" to enter the data from the table:")]
-        public void WhenIClickToEnterTheDataFromTheTable(string subMenu, Table table)
+        [When(@"I click Auto Complete to enter the data from the table:")]
+        public void WhenIClickToEnterTheDataFromTheTable(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Widgets", "Auto Complete");
             autoCompleteTextBoxPage.SetAutoCompleteSingleTextBox(table.Rows.First()["ColorName"]);
 
 
@@ -70,11 +68,11 @@ namespace SeleniumAutomationSolution.Steps
 
 
         //DatePicker
-        [When(@"I click ""(.*)"" to select date from the table:")]
-        public void WhenIClickToSelectDateFromTheTable(string subMenu, Table table)
+        [When(@"I click Date Picker to select date from the table:")]
+        public void WhenIClickToSelectDateFromTheTable(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Widgets", "Date Picker");
             datePickerPage.SelectDate(table);
         }
 
@@ -97,11 +95,11 @@ namespace SeleniumAutomationSolution.Steps
         }
 
 
-        [When(@"I click ""(.*)"" to select date and time from the table:")]
-        public void WhenIClickToSelectDateAndTimeFromTheTable(string subMenu, Table table)
+        [When(@"I click Date Picker to select date and time from the table:")]
+        public void WhenIClickToSelectDateAndTimeFromTheTable(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Widgets", "Date Picker");
             datePickerPage.SelectDateAndTime(table);
 
         }
@@ -116,11 +114,11 @@ namespace SeleniumAutomationSolution.Steps
 
 
         //Tool tips
-        [When(@"I click ""(.*)"" and mouser over the content")]
-        public void WhenIClickAndMouserOverTheContent(string subMenu, Table table)
+        [When(@"I click Tool Tips and mouser over the content")]
+        public void WhenIClickAndMouserOverTheContent(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Widgets", "Tool Tips");
             toolTipPage.MouseHoverTheToolTipInfo(table.Rows.First()["ToolTipContent"]);
 
 

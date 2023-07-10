@@ -22,7 +22,7 @@ namespace SeleniumAutomationSolution.Pages.AlertsAndWindows
         By NewWindowButton = By.CssSelector("button[id='windowButton']");
         By NewWindowMessageButton = By.CssSelector("button[id='messageWindowButton']");
         By SampleHeadingText = By.CssSelector("[id='sampleHeading']");
-        By WindowMessage = By.XPath("//body[contains(.,'Knowledge increases ')]");
+        By WindowMessage = By.XPath("//body");
 
         public void ClickNewButton(string buttonValue)
         {
@@ -57,9 +57,8 @@ namespace SeleniumAutomationSolution.Pages.AlertsAndWindows
             }
             
             Thread.Sleep(5000);
-            IWebElement newWindowMessage = UICommon.GetElement(WindowMessage, d);
-            string text = newWindowMessage.Text;
-            d.SwitchTo().DefaultContent();
+            string text = ((IJavaScriptExecutor)d).ExecuteScript("return document.body.textContent").ToString();
+            d.SwitchTo().Window(parentzwindow);
             return text;
         }
     }

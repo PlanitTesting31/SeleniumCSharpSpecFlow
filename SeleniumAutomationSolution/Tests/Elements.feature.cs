@@ -98,7 +98,7 @@ this.FeatureBackground();
                         "Hyderabad",
                         "Hyderabadz"});
 #line 9
- testRunner.When("I submit \"Text Box\" details with data from the table:", ((string)(null)), table1, "When ");
+ testRunner.When("I submit Text Box details with data from the table:", ((string)(null)), table1, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "FullName",
@@ -134,8 +134,8 @@ this.FeatureBackground();
                         "Desktop",
                         "Notes"});
 #line 18
- testRunner.When("I expand the following \"Check Box\" in the page and select the checkbox\'s from the" +
-                    " table:", ((string)(null)), table3, "When ");
+ testRunner.When("I expand the following Check Box in the page and select the checkbox\'s from the t" +
+                    "able:", ((string)(null)), table3, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                         "Desktop"});
@@ -163,21 +163,11 @@ this.FeatureBackground();
             table5.AddRow(new string[] {
                         "Cierra"});
 #line 27
- testRunner.When("I update \"Web Tables\" details with data from the table:", ((string)(null)), table5, "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Age"});
-            table6.AddRow(new string[] {
-                        "30"});
+ testRunner.When("I search details of the user in Web Tables page", ((string)(null)), table5, "When ");
 #line 30
- testRunner.And("I Edit \"age\" of the user and submit with data from the table:", ((string)(null)), table6, "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Age"});
-            table7.AddRow(new string[] {
-                        "30"});
-#line 33
- testRunner.Then("the new value is populated with data from the table:", ((string)(null)), table7, "Then ");
+ testRunner.And("I update \"age\" of the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.Then("the age is successfully updated in web table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -188,24 +178,24 @@ this.FeatureBackground();
         public virtual void VerificationOfTheButtonSelected()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of the button selected", ((string[])(null)));
-#line 37
+#line 33
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Button"});
-            table8.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Click Me"});
-#line 38
- testRunner.When("I click \"Buttons\" from the table:", ((string)(null)), table8, "When ");
+#line 34
+ testRunner.When("I click following button from Buttons page", ((string)(null)), table6, "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Button"});
-            table9.AddRow(new string[] {
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Message"});
+            table7.AddRow(new string[] {
                         "Click Me"});
-#line 41
- testRunner.Then("message is populated for button from table :", ((string)(null)), table9, "Then ");
+#line 37
+ testRunner.Then("the message is populated in the page", ((string)(null)), table7, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -216,13 +206,13 @@ this.FeatureBackground();
         public virtual void VerificationOfUploadAndDownload()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of upload and download", ((string[])(null)));
-#line 45
+#line 41
 this.ScenarioSetup(scenarioInfo);
 #line 3
 this.FeatureBackground();
-#line 46
- testRunner.When("I click \"Upload and Download\" for file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 47
+#line 42
+ testRunner.When("I click Upload and Download for file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
  testRunner.Then("upload and download of file is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

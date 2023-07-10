@@ -28,9 +28,9 @@ namespace SeleniumAutomationSolution.Pages.AlertsAndWindows
             ((IJavaScriptExecutor)d).ExecuteScript("arguments[0].click()", promptButton);
             Thread.Sleep(1000);
             IAlert alert = d.SwitchTo().Alert();           
-             alert.SendKeys(name);
+            alert.SendKeys(name);
             Thread.Sleep(1000);
-             alert.Accept();
+            alert.Accept();
         }
 
         public string GetPromptResult()

@@ -47,9 +47,9 @@ namespace SeleniumAutomationSolution.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://demoqa.com/")]
-        public string URL {
+        public string URL_TEST {
             get {
-                return ((string)(this["URL"]));
+                return ((string)(this["URL_TEST"]));
             }
         }
         
@@ -62,12 +62,15 @@ namespace SeleniumAutomationSolution.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://demoqa.com/")]
-        public string URL1 {
+        public string URL_SIT {
             get {
-                return ((string)(this["URL1"]));
+                return ((string)(this["URL_SIT"]));
+            }
+            set {
+                this["URL_SIT"] = value;
             }
         }
     }

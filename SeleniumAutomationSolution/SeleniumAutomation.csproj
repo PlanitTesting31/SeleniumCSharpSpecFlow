@@ -101,7 +101,6 @@
     <Compile Include="Environment\BrowserType.cs" />
     <Compile Include="Environment\TestEnvironment.cs" />
     <Compile Include="Environment\EnvironmentType.cs" />
-    <Compile Include="Environment\Users.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Steps\InteractionsStepDefinition.cs" />
     <Compile Include="Steps\WidgetsStepDefinition.cs" />
@@ -121,7 +120,7 @@
       <DependentUpon>Interactions.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks\SpecFlowHooks.cs" />
-    <Compile Include="Tests\BaseTest.cs" />
+    <Compile Include="Utilities\Global.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\Elements.feature.cs">
       <AutoGen>True</AutoGen>
@@ -133,7 +132,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Widgets.feature</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\PasswordGenerator.cs" />
     <Compile Include="Utilities\UICommon.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,9 +164,7 @@
       <LastGenOutput>Widgets.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Documents\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Utilities\UploadFile\sampleFile.jpeg" />
   </ItemGroup>

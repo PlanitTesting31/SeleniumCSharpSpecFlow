@@ -43,12 +43,12 @@ namespace SeleniumAutomationSolution.Pages.Elements
             EditButton.Click();
         }
 
-       public void SetUserFormValue(string userFormtitle, Table table)
+       public void SetUserFormValue(string userFormtitle, string age)
         {
                     
             IWebElement userFormField = UICommon.GetElement(UserFormFields(userFormtitle), d);
             userFormField.Clear();
-            userFormField.SendKeys(table.Rows.First()["Age"]);
+            userFormField.SendKeys(age.ToString()); ;
         }
 
         public void ClickSubmitButton()

@@ -88,13 +88,13 @@ this.ScenarioSetup(scenarioInfo);
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Button"});
+                        "ButtonName"});
             table1.AddRow(new string[] {
                         "New Window"});
 #line 8
- testRunner.When("I click buttons in \"Browser Windows\" from the table:", ((string)(null)), table1, "When ");
+ testRunner.When("I click following buttons in Browser Windows page", ((string)(null)), table1, "When ");
 #line 11
- testRunner.Then("sample heading text is populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("sample heading text is populated in new tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -105,19 +105,19 @@ this.FeatureBackground();
         public virtual void VerificationOfTheBrowserWindowMessage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of the Browser Window Message", ((string[])(null)));
-#line 14
+#line 13
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Button"});
+                        "ButtonName"});
             table2.AddRow(new string[] {
                         "New Window Message"});
-#line 15
- testRunner.When("I click button in \"Browser Windows\" from the table:", ((string)(null)), table2, "When ");
-#line 18
- testRunner.Then("sample heading message is populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 14
+ testRunner.When("I click following buttons in Browser Windows page", ((string)(null)), table2, "When ");
+#line 17
+ testRunner.Then("sample heading message is populated in new window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -128,18 +128,18 @@ this.FeatureBackground();
         public virtual void VerificationOnButtonClickPromptBoxWillAppear()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification on button click prompt box will appear", ((string[])(null)));
-#line 20
+#line 19
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Name"});
+                        "ButtonName"});
             table3.AddRow(new string[] {
                         "Prompt Button"});
-#line 21
- testRunner.When("I click prompt button in \"Alerts\" and enter text from the table:", ((string)(null)), table3, "When ");
-#line 24
+#line 20
+ testRunner.When("I click following buttons in Alerts page", ((string)(null)), table3, "When ");
+#line 23
  testRunner.Then("alert message is populated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

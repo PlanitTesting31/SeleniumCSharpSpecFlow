@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace SeleniumAutomationSolution.Pages.Elements
 {
     public class UploadAndDownloadPage : BasePage
@@ -40,6 +41,7 @@ namespace SeleniumAutomationSolution.Pages.Elements
             Thread.Sleep(5000);
             uploadButton.SendKeys(path);
             Thread.Sleep(5000);
+            
         }
 
         public string GetUploadOutputText()
@@ -60,6 +62,7 @@ namespace SeleniumAutomationSolution.Pages.Elements
             //Gets All files in user directory downloads
             var desktopPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
             var filePaths = Directory.GetFiles(desktopPath+"\\downloads");
+            
             List<string> listItemsName = new List<string>();
             for (int i = 0; i < filePaths.Length; i++)
             {
@@ -77,10 +80,18 @@ namespace SeleniumAutomationSolution.Pages.Elements
                 file = false;
                 return file;
             }
-
             
+         }
 
+        public void DeleteFilesAndDirectory()
+        {
+            var desktopPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.FullName;
+            var filePath = (desktopPath + "\\downloads\\sampleFile.jpeg");            
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath); //delete the downloaded  file
+            }
         }
-        
+
     }
 }

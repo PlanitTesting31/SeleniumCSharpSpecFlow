@@ -1,72 +1,67 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SeleniumAutomationSolution.Pages;
 using SeleniumAutomationSolution.Pages.AlertsAndWindows;
-using SeleniumAutomationSolution.Utilities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Steps
 {
     [Binding]
-    public sealed class AlertsAndWindowsStepDefinition : BaseTest
+    public class AlertsAndWindowsStepDefinition
     {
 
-        HomePage homePage = new HomePage(driver);
-        BrowsersPage browserPage = new BrowsersPage(driver);
-        AlertsPage alertsPage = new AlertsPage(driver);
-        
-        [When(@"I click buttons in ""(.*)"" from the table:")]
-        public void WhenIClickButtonsInFromTheTable(string subMenu, Table table)
+        Global global;
+
+        public AlertsAndWindowsStepDefinition(Global global)
         {
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
-            browserPage.ClickNewButton(table.Rows.First()["Button"]);
+            this.global = global;
         }
 
-        [Then(@"sample heading text is populated")]
+
+        [When(@"I click following buttons in Browser Windows page")]
+        public void WhenIClickButtonsInFromTheTable(Table table)
+        {
+            new HomePage(global.driver).ExpandMenuAndClickItem("Alerts, Frame & Windows", "Browser Windows");
+            new BrowsersPage(global.driver).ClickNewButton(table.Rows.First()["ButtonName"]);
+        }
+
+        [Then(@"sample heading text is populated in new tab")]
         public void ThenSampleHeadingTextIsPopulated()
         {
-            Assert.AreEqual("This is a sample page", browserPage.GetTextFromNewTab());
+            Assert.AreEqual("This is a sample page", new BrowsersPage(global.driver).GetTextFromNewTab());
         }
 
 
         [When(@"I click button in ""(.*)"" from the table:")]
         public void WhenIClickButtonInFromTheTable(string subMenu, Table table)
         {
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
-            browserPage.ClickNewButton(table.Rows.First()["Button"]);
+            new HomePage(global.driver).ExpandMenuAndClickItem("Alerts, Frame & Windows", subMenu);
+            new BrowsersPage(global.driver).ClickNewButton(table.Rows.First()["Button"]);
         }
 
-        [Then(@"sample heading message is populated")]
+        [Then(@"sample heading message is populated in new window")]
         public void ThenSampleHeadingMessageIsPopulated()
         {
-            string message = browserPage.GetMessageFromNewWindow();
+            string message = new BrowsersPage(global.driver).GetMessageFromNewWindow();
             Console.WriteLine(message);
         }
 
-
-        //Alerts
-
-        [When(@"I click prompt button in ""(.*)"" and enter text from the table:")]
-        public void WhenIClickAndClickButtonFromTheTable(string subMenu, Table table)
+        [When(@"I click following buttons in Alerts page")]
+        public void WhenIClickAndClickButtonFromTheTable(Table table)
         {
-            homePage.ScrollBar();
-            homePage.ExpandMenuAndClickItem("Elements", subMenu);
-            alertsPage.ClickPromptButtonAndSendText(table.Rows.First()["Name"]);
+            HomePage homePage = new HomePage(global.driver);
+            homePage.ScrollToBottom();
+            homePage.ExpandMenuAndClickItem("Alerts, Frame & Windows", "Alerts");
+            new AlertsPage(global.driver).ClickPromptButtonAndSendText(table.Rows.First()["ButtonName"]);
 
         }
 
         [Then(@"alert message is populated")]
         public void ThenCloseTheAlertSucessfully()
         {
-            Assert.AreEqual("You entered Prompt Button" , alertsPage.GetPromptResult());
-            
+            Assert.AreEqual("You entered Prompt Button", new AlertsPage(global.driver).GetPromptResult());
+
         }
-
-
-
-
     }
 }
