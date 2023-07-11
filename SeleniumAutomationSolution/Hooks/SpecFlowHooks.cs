@@ -4,10 +4,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using SeleniumAutomationSolution.Environment;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Tests
@@ -16,7 +12,8 @@ namespace SeleniumAutomationSolution.Tests
     public sealed class SpecFlowHooks
     {
         Global global;
-      public SpecFlowHooks(Global global)
+        IWebDriver d;
+        public SpecFlowHooks(Global global)
         {
             this.global = global;
         }
@@ -53,30 +50,6 @@ namespace SeleniumAutomationSolution.Tests
         public void AfterScenario()
         {
             global.driver.Quit();
-            switch (Properties.Settings.Default.Browser)
-            {
-                case BrowserType.Firefox:
-                    KillProcess("firefox.exe");
-                    break;
-                case BrowserType.IE:
-                    KillProcess("iexplorer.exe");
-                    break;
-                case BrowserType.Chrome:
-                    KillProcess("chrome.exe");
-                    KillProcess("chromedriver.exe");
-                    break;
-                default:
-                    throw new ArgumentException("Browser Type Invalid");
-
-            }
-        }
-
-        public static void KillProcess(string processName)
-        {
-            foreach (var process in Process.GetProcessesByName(processName))
-            {
-                process.Kill();
-            }
         }
     }
 }

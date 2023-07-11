@@ -1,17 +1,13 @@
 ﻿Feature: Interactions
 	Verification of interactions
 
-Background: 
+Background:
 	Given I navigate to "Interactions" sections of the homepage
 
 Scenario: Verification of sort list
-	When I click list in Sortable
+	When I sort the list content
 	Then list is sorted in descending order
 
 Scenario: Verification of drag and drop message
-	When I do simple drag and drop in Droppable
+	When I drag the text box and drop on 'Drop here' text box
 	Then dropped message is populated
-
-
-
-

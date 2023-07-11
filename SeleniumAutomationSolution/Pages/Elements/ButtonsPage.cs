@@ -2,27 +2,21 @@
 using OpenQA.Selenium.Interactions;
 using SeleniumAutomationSolution.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace SeleniumAutomationSolution.Pages.Elements
 {
     class ButtonsPage : BasePage
     {
-        IWebDriver d;
+
         public ButtonsPage(IWebDriver driver)
             : base(driver)
         {
-            this.d = driver;
-
         }
 
         //Selectors
-        By Button(string buttonTitle) => By.XPath("//button[text()='" + buttonTitle + "']");
-        By ButtonText(string buttonId) => By.XPath("//p[@id='"+ buttonId+"']");
+        private By Button(string buttonTitle) => By.XPath("//button[text()='" + buttonTitle + "']");
+        private By ButtonText(string buttonId) => By.XPath("//p[@id='" + buttonId + "']");
 
         string buttonName = "";
 
@@ -39,16 +33,14 @@ namespace SeleniumAutomationSolution.Pages.Elements
                     new Actions(d).MoveToElement(button).ContextClick().Perform();
                     break;
                 case "Click Me":
-                    // new Actions(d).MoveToElement(button).Click().Perform();
                     button.Click();
                     break;
                 default:
                     throw new Exception($"Button: {buttonValue} is not present");
             }
-            Thread.Sleep(5000);
+
         }
 
-        //Id locators are dynamic hence ID's are passed as parameters based on button selected
         public string GetButtonMessage()
         {
             switch (buttonName)
@@ -63,17 +55,17 @@ namespace SeleniumAutomationSolution.Pages.Elements
                     string rightClickText = buttonRightClick.Text;
                     Console.WriteLine(rightClickText);
                     return rightClickText;
-                    
+
                 case "Click Me":
                     IWebElement buttonClick = UICommon.GetElement(ButtonText("dynamicClickMessage"), d);
                     string clickText = buttonClick.Text;
                     Console.WriteLine(clickText);
                     return clickText;
-                    
+
                 default:
                     throw new Exception($"Button: {buttonName} is not present");
             }
-                        
+
         }
     }
 }

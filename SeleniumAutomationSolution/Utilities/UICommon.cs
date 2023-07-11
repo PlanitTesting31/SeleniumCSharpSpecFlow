@@ -1,57 +1,19 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumAutomationSolution.Utilities
 {
     public static class UICommon
     {
-        static int waitsec = Properties.Settings.Default.WaitTime;
+        static readonly int waitsec = Properties.Settings.Default.WaitTime;
 
         public static IWebElement GetElement(By searchType, IWebDriver d)
         {
-
             WebDriverWait wait = new WebDriverWait(d, TimeSpan.FromSeconds(waitsec));
             IWebElement elem = wait.Until(ExpectedConditions.ElementIsVisible(searchType));
             ElementHighlight(elem, d);
             return elem;
-            
-        }
-
-        public static bool ObjectNotExists(By searchType, IWebDriver d)
-        {
-            WebDriverWait wait = new WebDriverWait(d, TimeSpan.FromSeconds(waitsec));
-            wait.Until((driver) => { return d.FindElements(searchType).Count == 0; });
-            return true;
-        }
-
-        public static bool ObjectExists(By searchType, IWebDriver d)
-        {
-            WebDriverWait wait = new WebDriverWait(d, TimeSpan.FromSeconds(waitsec));
-            wait.Until((driver) => { return d.FindElements(searchType).Count > 0; });
-            return true;
-        }
-
-
-        public static void ClickButton(By searchType, IWebDriver d)
-        {
-            IWebElement elem = GetElement(searchType, d);
-            MoveToElement(elem,d);
-            new Actions(d).MoveToElement(elem).Click().Perform();
-            
-        }
-
-        public static void SetValue(this By searchType, string value, IWebDriver d)
-        {
-            IWebElement elem = GetElement(searchType, d);
-            elem.Clear();
-            elem.SendKeys(value);
-
         }
 
         public static void ElementHighlight(IWebElement element, IWebDriver d)
@@ -69,9 +31,9 @@ namespace SeleniumAutomationSolution.Utilities
             return element;
         }
 
-        public static void  VerticalScrollBar(IWebDriver d)
+        public static void ScrollToBottom(IWebDriver d)
         {
-            ((IJavaScriptExecutor)d).ExecuteScript("window.scrollBy(0,70)");
+            ((IJavaScriptExecutor)d).ExecuteScript("window.scrollBy(0,200)");
 
         }
 
@@ -79,8 +41,7 @@ namespace SeleniumAutomationSolution.Utilities
         public static IWebElement WaitUntilDisplayed(this By element, IWebDriver d)
         {
             WebDriverWait wait = new WebDriverWait(d, TimeSpan.FromSeconds(waitsec));
-           return wait.Until(ExpectedConditions.ElementIsVisible(element));
+            return wait.Until(ExpectedConditions.ElementIsVisible(element));
         }
-
     }
 }

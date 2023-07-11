@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SeleniumAutomationSolution.Pages;
 using SeleniumAutomationSolution.Pages.BookStoreApplication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Steps
@@ -12,15 +8,12 @@ namespace SeleniumAutomationSolution.Steps
     [Binding]
     public sealed class BookStoreApplicationStepDefinition
     {
-
-        Global global;
         HomePage homePage;
         BookStoreApplicationLoginPage bookStoreApplicationLoginPage;
 
         public BookStoreApplicationStepDefinition(Global global)
         {
-            this.global = global;
-            homePage=new HomePage(global.driver);
+            homePage = new HomePage(global.driver);
             bookStoreApplicationLoginPage = new BookStoreApplicationLoginPage(global.driver);
         }
 

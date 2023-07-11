@@ -70,8 +70,8 @@ namespace SeleniumAutomationSolution.Tests
         
         public virtual void FeatureBackground()
         {
-#line 3
 #line 4
+#line 5
  testRunner.Given("I navigate to \"Book Store Application\" sections of the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -82,13 +82,13 @@ namespace SeleniumAutomationSolution.Tests
         public virtual void VerificationOfSuccessLogin()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of success login", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
-#line 3
-this.FeatureBackground();
 #line 7
- testRunner.When("I login into the book store application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
 #line 8
+ testRunner.When("I login into the book store application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 9
  testRunner.Then("user login is successfull", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

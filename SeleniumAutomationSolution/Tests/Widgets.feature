@@ -12,7 +12,7 @@ Scenario: Verification widgets for multiple colors
 	Then the data is submitted correctly from the table:
 		| ColorName |
 		| Blue      |
-		| Black      |
+		| Black     |
 
 Scenario: Verification widgets for single color
 	When I click Auto Complete to enter the data from the table:
@@ -23,20 +23,12 @@ Scenario: Verification widgets for single color
 		| Blue      |
 
 Scenario: Verification of select date
-	When I click Date Picker to select date from the table:
-		| Month  | Year | Date |
-		| August | 2024 | 19   |
-	Then the date is selected correctly with data from the table:
-		| Month  | Year | Date |
-		| August | 2024 | 19   |
+	When I click Date Picker to select today date
+	Then the date is selected correctly
 
 Scenario: Verification of select date and time
-	When I click Date Picker to select date and time from the table:
-		| Month  | Year | Date | Time  |
-		| August | 2024 | 19   | 03:30 |
-	Then the date and time is selected correctly with data from the table:
-		| Month  | Year | Date | Time |
-		| August | 2024 | 19   | 3:30 |
+	When I click Date Picker to select today date and time
+	Then the date and time is selected correctly
 
 Scenario:Verification of tool tip info content
 	When I click Tool Tips and mouser over the content

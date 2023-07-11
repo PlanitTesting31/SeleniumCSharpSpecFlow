@@ -1,32 +1,26 @@
 ﻿using OpenQA.Selenium;
 using SeleniumAutomationSolution.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumAutomationSolution.Pages.BookStoreApplication
 {
+
     public class BookStoreApplicationLoginPage : BasePage
     {
-        IWebDriver d;
+
         public BookStoreApplicationLoginPage(IWebDriver driver)
             : base(driver)
         {
-            this.d = driver;
-
         }
 
-        By UserName = By.CssSelector("[id='userName']");
-        By UserPassword = By.CssSelector("[id='password']");
-        By UserValue = By.CssSelector("[id = 'userName-value']");
-        By Login = By.CssSelector("[id='login']");
-        By Logout = By.XPath("//button[text()='Log out']");
+        readonly By UserName = By.CssSelector("[id='userName']");
+        readonly By UserPassword = By.CssSelector("[id='password']");
+        readonly By UserID = By.CssSelector("[id = 'userName-value']");
+        readonly By Login = By.CssSelector("[id='login']");
+        readonly By Logout = By.XPath("//button[text()='Log out']");
 
         public void ClickUserLoginButton()
         {
-            IWebElement login= UICommon.GetElement(Login, d);
+            IWebElement login = UICommon.GetElement(Login, d);
             login.Click();
         }
         public void SetUserName(string userId)
@@ -43,7 +37,7 @@ namespace SeleniumAutomationSolution.Pages.BookStoreApplication
 
         public string GetUserValueAfterLogin()
         {
-            IWebElement userValue = UICommon.GetElement(UserValue, d);
+            IWebElement userValue = UICommon.GetElement(UserID, d);
             return userValue.Text;
         }
 

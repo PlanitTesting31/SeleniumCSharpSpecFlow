@@ -3,8 +3,6 @@ using SeleniumAutomationSolution.Pages;
 using SeleniumAutomationSolution.Pages.Interactions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Steps
@@ -12,24 +10,20 @@ namespace SeleniumAutomationSolution.Steps
     [Binding]
     public sealed class InteractionsStepDefinition
     {
-
-        Global global;
         HomePage homePage;
         SortListPage sortListPage;
         DragAndDropPage dragAndDropPage;
 
         public InteractionsStepDefinition(Global global)
         {
-            this.global = global;
             homePage = new HomePage(global.driver);
             sortListPage = new SortListPage(global.driver);
             dragAndDropPage = new DragAndDropPage(global.driver);
         }
 
-        [When(@"I click list in Sortable")]
+        [When(@"I sort the list content")]
         public void WhenIClickListInFromTheTable()
         {
-
             homePage.ScrollToBottom();
             homePage.ExpandMenuAndClickItem("Interactions", "Sortable");
             sortListPage.SortTheList();
@@ -38,35 +32,31 @@ namespace SeleniumAutomationSolution.Steps
         [Then(@"list is sorted in descending order")]
         public void ThenListIsSortedInDescendingOrder()
         {
-           IList<string> beforeSortText = sortListPage.GetBeforeSortList();
-            foreach (string e in beforeSortText)
-            {
-                Console.WriteLine(string.Join(",", e));
-                
-            }
+            List<string> beforeSortText = sortListPage.GetBeforeSortList();
+            beforeSortText.Reverse();
             IList<string> afterSortText = sortListPage.GetAfterSortList();
-            foreach (string e in afterSortText)
+            for (int i = 0; i < afterSortText.Count; i++)
             {
-                 Console.WriteLine(string.Join(",", e));
-               
+                Console.WriteLine("Comparing " + beforeSortText[i] + "=>" + afterSortText[i]);
+                Assert.AreEqual(beforeSortText[i], afterSortText[i]);
             }
-            Assert.AreNotEqual(beforeSortText,afterSortText);
+
         }
 
         //Drag and drop
-        [When(@"I do simple drag and drop in Droppable")]
+        [When(@"I drag the text box and drop on 'Drop here' text box")]
         public void WhenIDoSimpleDragAndDropIn()
         {
             homePage.ScrollToBottom();
             homePage.ExpandMenuAndClickItem("Interactions", "Droppable");
-            dragAndDropPage.PerformDragAndDrop();
+            dragAndDropPage.DragAndDropTextBox();
 
         }
 
         [Then(@"dropped message is populated")]
         public void ThenDroppedMessageIsPopulated()
         {
-            Assert.AreEqual("Dropped!",dragAndDropPage.GetDroppableText());
+            Assert.AreEqual("Dropped!", dragAndDropPage.GetDroppableText());
         }
 
 

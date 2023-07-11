@@ -39,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="SpecRun.SpecFlowPlugin, Version=1.2.0.15, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SpecRun.SpecFlow.1.2.0\lib\net35\SpecRun.SpecFlowPlugin.dll</HintPath>

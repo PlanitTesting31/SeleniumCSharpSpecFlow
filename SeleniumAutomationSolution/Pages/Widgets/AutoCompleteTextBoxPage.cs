@@ -2,11 +2,6 @@
 using SeleniumAutomationSolution.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Pages.Widgets
 {
@@ -15,25 +10,22 @@ namespace SeleniumAutomationSolution.Pages.Widgets
         public AutoCompleteTextBoxPage(IWebDriver driver)
             : base(driver)
         {
-            this.d = driver;
-
         }
 
-        By AutoCompleteMultipleInput = By.CssSelector("[id='autoCompleteMultipleInput']");
-        By AutoCompleteSingleInput = By.CssSelector("[id='autoCompleteSingleInput']");
-        By AutoCompleteMultipleResult = By.XPath("//div[@id='autoCompleteMultiple']//child::div[contains(@class,'auto-complete__value-container')]");
-        By AutoCompleteSingleResult = By.XPath("//div[@id='autoCompleteSingle']//child::div[contains(@class,'auto-complete__value-container')]");
-        
-        public void SetAutoCompleteMultipleTextBox(string colorName)
+        readonly By AutoCompleteMultipleInput = By.CssSelector("[id='autoCompleteMultipleInput']");
+        readonly By AutoCompleteSingleInput = By.CssSelector("[id='autoCompleteSingleInput']");
+        readonly By AutoCompleteMultipleResult = By.XPath("//div[@id='autoCompleteMultiple']//child::div[contains(@class,'auto-complete__value-container')]");
+        readonly By AutoCompleteSingleResult = By.XPath("//div[@id='autoCompleteSingle']//child::div[contains(@class,'auto-complete__value-container')]");
+
+        public void SetAutoCompleteMultiColourTextBox(string colorName)
         {
             //This Scroll is required to set text box in view
-            UICommon.VerticalScrollBar(d);
+            UICommon.ScrollToBottom(d);
             IWebElement autoCompleteMultipleBox = UICommon.GetElement(AutoCompleteMultipleInput, d);
-            
-                autoCompleteMultipleBox.SendKeys(colorName);
-                Thread.Sleep(1000);
-                IList<IWebElement> optionsToSelect = d.FindElements(By.XPath("//div[text()='" + colorName + "']"));
-                Thread.Sleep(4000);
+
+            autoCompleteMultipleBox.SendKeys(colorName);
+            autoCompleteMultipleBox.SendKeys(Keys.Enter);
+            IList<IWebElement> optionsToSelect = d.FindElements(By.XPath("//div[text()='" + colorName + "']"));
             foreach (IWebElement option in optionsToSelect)
             {
                 Console.WriteLine(option);
@@ -41,15 +33,13 @@ namespace SeleniumAutomationSolution.Pages.Widgets
                 {
                     Console.WriteLine("Trying to select: " + colorName);
                     option.Click();
-                    Thread.Sleep(1000);
                     break;
                 }
-            }    
-                   
+            }
+
         }
         public void SetAutoCompleteSingleTextBox(string colorName)
         {
-            Thread.Sleep(2000);
             IWebElement autoCompleteSingleBox = UICommon.GetElement(AutoCompleteSingleInput, d);
             autoCompleteSingleBox.SendKeys(colorName);
             autoCompleteSingleBox.SendKeys(Keys.Enter);
@@ -58,6 +48,7 @@ namespace SeleniumAutomationSolution.Pages.Widgets
         public string[] GetAutoCompleteMultipleTextBoxResult()
         {
             IWebElement autoCompleteMultipleTextBoxResult = UICommon.GetElement(AutoCompleteMultipleResult, d);
+            AutoCompleteMultipleResult.WaitUntilDisplayed(d);
             string result = autoCompleteMultipleTextBoxResult.Text;
             string[] mutipleResult = result.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             return mutipleResult;

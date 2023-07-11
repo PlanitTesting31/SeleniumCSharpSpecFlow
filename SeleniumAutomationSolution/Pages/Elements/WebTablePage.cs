@@ -2,50 +2,40 @@
 using OpenQA.Selenium.Interactions;
 using SeleniumAutomationSolution.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Pages.Elements
 {
     public class WebTablePage : BasePage
     {
-
-        IWebDriver d;
         public WebTablePage(IWebDriver driver)
             : base(driver)
         {
-            this.d = driver;
-
         }
 
         //Selectors
-        By SearchBox = By.CssSelector("[id='searchBox']");
-        By Edit = By.CssSelector("[title='Edit']");
-        By UserFormFields(string value) => By.XPath("//input[@id='"+value+"']");
-        By SubmitButton = By.CssSelector("[id='submit']");
-        By TableRow = By.CssSelector("[class='rt-tr -odd']");
+        readonly By SearchBox = By.CssSelector("[id='searchBox']");
+        readonly By EditIcon = By.CssSelector("[title='Edit']");
+        readonly By SubmitButton = By.CssSelector("[id='submit']");
+        readonly By TableRow = By.CssSelector("[class='rt-tr -odd']");
+        private By UserFormFields(string value) => By.XPath("//input[@id='" + value + "']");
+        
 
         public void SetSearchBoxValue(string userName)
         {
             IWebElement SearchTextBox = UICommon.GetElement(SearchBox, d);
             SearchTextBox.SendKeys(userName);
-            Thread.Sleep(3000);
             SearchTextBox.SendKeys(Keys.Control + Keys.Enter);
         }
 
         public void ClickEditAction()
         {
-            IWebElement EditButton = UICommon.GetElement(Edit, d);
+            IWebElement EditButton = UICommon.GetElement(EditIcon, d);
             EditButton.Click();
         }
 
-       public void SetUserFormValue(string userFormtitle, string age)
+        public void SetUserFormValue(string userFormtitle, string age)
         {
-                    
+
             IWebElement userFormField = UICommon.GetElement(UserFormFields(userFormtitle), d);
             userFormField.Clear();
             userFormField.SendKeys(age.ToString()); ;
@@ -56,7 +46,6 @@ namespace SeleniumAutomationSolution.Pages.Elements
             IWebElement submit = UICommon.GetElement(SubmitButton, d);
             UICommon.MoveToElement(submit, d);
             UICommon.WaitUntilDisplayed(SubmitButton, d);
-            Thread.Sleep(5000);
             new Actions(d).MoveToElement(submit).Click().Perform();
         }
 
@@ -67,7 +56,6 @@ namespace SeleniumAutomationSolution.Pages.Elements
             Console.WriteLine(value);
             return value.Trim();
         }
-
 
     }
 }

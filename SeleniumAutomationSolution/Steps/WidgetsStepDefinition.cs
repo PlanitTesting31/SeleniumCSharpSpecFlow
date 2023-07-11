@@ -2,10 +2,8 @@
 using SeleniumAutomationSolution.Pages;
 using SeleniumAutomationSolution.Pages.Widgets;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SeleniumAutomationSolution.Steps
@@ -13,31 +11,33 @@ namespace SeleniumAutomationSolution.Steps
     [Binding]
     public class WidgetsStepDefinition
     {
-        HomePage homePage;
-        AutoCompleteTextBoxPage autoCompleteTextBoxPage;
-        DatePickerPage datePickerPage;
-        ToolTipPage toolTipPage;
-        Global global;
+        readonly HomePage homePage;
+        readonly AutoCompleteTextBoxPage autoCompleteTextBoxPage;
+        readonly DatePickerPage datePickerPage;
+        readonly ToolTipPage toolTipPage;
 
         public WidgetsStepDefinition(Global global)
         {
-            this.global = global;
-             homePage = new HomePage(global.driver);
-             autoCompleteTextBoxPage = new AutoCompleteTextBoxPage(global.driver);
-             datePickerPage = new DatePickerPage(global.driver);
-             toolTipPage = new ToolTipPage(global.driver);
+            homePage = new HomePage(global.driver);
+            autoCompleteTextBoxPage = new AutoCompleteTextBoxPage(global.driver);
+            datePickerPage = new DatePickerPage(global.driver);
+            toolTipPage = new ToolTipPage(global.driver);
         }
+
+        readonly string date = DateTime.Now.ToString("dd");
+        readonly string month = DateTime.Now.AddMonths(1).ToString("MMMM");
+        readonly string year = DateTime.Now.ToString("yyyy");
+        readonly string time = DateTime.Now.ToString("h:mm tt");
 
         [When(@"I click Auto Complete to enter data from the table:")]
         public void WhenIClickToEnterDataFromTheTable(Table table)
         {
             homePage.ScrollToBottom();
             homePage.ExpandMenuAndClickItem("Widgets", "Auto Complete");
-            for(int i=0; i< table.Rows.Count; i++)
+            for (int i = 0; i < table.Rows.Count; i++)
             {
-                autoCompleteTextBoxPage.SetAutoCompleteMultipleTextBox(table.Rows[i]["ColorName"]);
+                autoCompleteTextBoxPage.SetAutoCompleteMultiColourTextBox(table.Rows[i]["ColorName"]);
             }
-
         }
 
         [Then(@"the data is submitted correctly from the table:")]
@@ -46,7 +46,7 @@ namespace SeleniumAutomationSolution.Steps
             for (int i = 0; i < table.Rows.Count(); i++)
             {
                 Assert.IsTrue(autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult().Contains(table.Rows[i]["ColorName"]),
-                    table.Rows[i]["ColorName"]+ "not found in the list : "+ autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult());
+                    table.Rows[i]["ColorName"] + " not found in the list : " + autoCompleteTextBoxPage.GetAutoCompleteMultipleTextBoxResult());
             }
         }
 
@@ -66,52 +66,50 @@ namespace SeleniumAutomationSolution.Steps
             Assert.AreEqual(table.Rows.First()["ColorName"], autoCompleteTextBoxPage.GetAutoCompleteSingleTextBoxResult());
         }
 
-
         //DatePicker
-        [When(@"I click Date Picker to select date from the table:")]
-        public void WhenIClickToSelectDateFromTheTable(Table table)
+        [When(@"I click Date Picker to select today date")]
+        public void WhenIClickToSelectDateFromTheTable()
         {
             homePage.ScrollToBottom();
             homePage.ExpandMenuAndClickItem("Widgets", "Date Picker");
-            datePickerPage.SelectDate(table);
+            datePickerPage.SelectDate(date, month, year);
         }
 
-        [Then(@"the date is selected correctly with data from the table:")]
-        public void ThenTheSelectedDateFromTheTableIsPopulated(Table table)
+        [Then(@"the date is selected correctly")]
+        public void ThenTheSelectedDateFromTheTableIsPopulated()
         {
             //Convert Full Month name to number
-            string dateFromTheTable ="";
-            int monthNumber = DateTime.ParseExact(table.Rows.First()["Month"], "MMMM", CultureInfo.CurrentCulture).Month;
-            if(monthNumber < 10)
+            string dateFromTheTable = "";
+            int monthNumber = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
+            if (monthNumber < 10)
             {
-                dateFromTheTable = "0"+monthNumber + "/" + table.Rows.First()["Date"] + "/" + table.Rows.First()["Year"];
+                dateFromTheTable = "0" + monthNumber + "/" + date + "/" + year;
             }
             else
             {
-                dateFromTheTable = monthNumber + "/" + table.Rows.First()["Date"] + "/" + table.Rows.First()["Year"];
+                dateFromTheTable = monthNumber + "/" + date + "/" + year;
             }
             Console.WriteLine(dateFromTheTable);
             Assert.AreEqual(dateFromTheTable, datePickerPage.GetSelectedDate());
         }
 
-
-        [When(@"I click Date Picker to select date and time from the table:")]
-        public void WhenIClickToSelectDateAndTimeFromTheTable(Table table)
+        [When(@"I click Date Picker to select today date and time")]
+        public void WhenIClickToSelectDateAndTimeFromTheTable()
         {
+
             homePage.ScrollToBottom();
             homePage.ExpandMenuAndClickItem("Widgets", "Date Picker");
-            datePickerPage.SelectDateAndTime(table);
+            datePickerPage.SelectDateAndTime(date, month, year, time);
 
         }
 
-        [Then(@"the date and time is selected correctly with data from the table:")]
-        public void ThenTheDateAndTimeIsSelectedWithDataFromTheTable(Table table)
+        [Then(@"the date and time is selected correctly")]
+        public void ThenTheDateAndTimeIsSelectedWithDataFromTheTable()
         {
             //July 13, 2023 3:30 AM
-            string dateAndTimeFromTheTable = table.Rows.First()["Month"] + " " + table.Rows.First()["Date"] + ", " + table.Rows.First()["Year"] + " " + table.Rows.First()["Time"] + " AM";
-            Assert.AreEqual(dateAndTimeFromTheTable,datePickerPage.GetSelectedDateAndTime());
+            string dateAndTimeConcat = month + " " + date + ", " + year + " " + time;
+            Assert.AreEqual(dateAndTimeConcat, datePickerPage.GetSelectedDateAndTime());
         }
-
 
         //Tool tips
         [When(@"I click Tool Tips and mouser over the content")]
@@ -127,14 +125,8 @@ namespace SeleniumAutomationSolution.Steps
         [Then(@"the info validated correctly for tool tip from the table:")]
         public void ThenToolInfoIsValidatedCorrectly(Table table)
         {
-            Assert.AreEqual("You hovered over the "+table.Rows.First()["ToolTipContent"], toolTipPage.GetToolTipText());
+            Assert.AreEqual("You hovered over the " + table.Rows.First()["ToolTipContent"], toolTipPage.GetToolTipText());
         }
-
-
-
-
-
-
 
     }
 }

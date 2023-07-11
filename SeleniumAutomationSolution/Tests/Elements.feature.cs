@@ -70,8 +70,8 @@ namespace SeleniumAutomationSolution.Tests
         
         public virtual void FeatureBackground()
         {
-#line 3
 #line 4
+#line 5
  testRunner.Given("I navigate to \"Elements\" sections of the homepage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -82,9 +82,9 @@ namespace SeleniumAutomationSolution.Tests
         public virtual void VerificationTheDetailsOfTextOfSubmittedTextBoxDetails()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification the details of text of submitted text box details", ((string[])(null)));
-#line 8
+#line 7
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -97,21 +97,10 @@ this.FeatureBackground();
                         "SS@gmail.com",
                         "Hyderabad",
                         "Hyderabadz"});
-#line 9
- testRunner.When("I submit Text Box details with data from the table:", ((string)(null)), table1, "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "FullName",
-                        "Email",
-                        "CurrentAddress",
-                        "PermanentAddress"});
-            table2.AddRow(new string[] {
-                        "SS",
-                        "SS@gmail.com",
-                        "Hyderabad",
-                        "Hyderabadz"});
-#line 12
- testRunner.Then("the submitted details of user should be displayed from the table:", ((string)(null)), table2, "Then ");
+#line 8
+ testRunner.When("I submit text box details with data from the table", ((string)(null)), table1, "When ");
+#line 11
+ testRunner.Then("the details of user should be submitted successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -122,23 +111,29 @@ this.FeatureBackground();
         public virtual void VerificationOfTheSelectedCheckBoxItems()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of the selected check box items", ((string[])(null)));
-#line 17
+#line 13
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Home",
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "ExpandMenu"});
+            table2.AddRow(new string[] {
+                        "Home"});
+            table2.AddRow(new string[] {
                         "Desktop"});
+#line 14
+ testRunner.When("I expand the following check box in the page", ((string)(null)), table2, "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Name"});
             table3.AddRow(new string[] {
-                        "Desktop",
                         "Notes"});
 #line 18
- testRunner.When("I expand the following Check Box in the page and select the checkbox\'s from the t" +
-                    "able:", ((string)(null)), table3, "When ");
+ testRunner.And("I select the check box", ((string)(null)), table3, "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Desktop"});
+                        "Name"});
             table4.AddRow(new string[] {
                         "notes"});
 #line 21
@@ -153,20 +148,20 @@ this.FeatureBackground();
         public virtual void EditingTheContentsOfTheWebTable()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing the contents of the web table", ((string[])(null)));
-#line 26
+#line 25
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "FirstName"});
             table5.AddRow(new string[] {
                         "Cierra"});
-#line 27
+#line 26
  testRunner.When("I search details of the user in Web Tables page", ((string)(null)), table5, "When ");
-#line 30
+#line 29
  testRunner.And("I update \"age\" of the user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 30
  testRunner.Then("the age is successfully updated in web table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -178,42 +173,60 @@ this.FeatureBackground();
         public virtual void VerificationOfTheButtonSelected()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of the button selected", ((string[])(null)));
-#line 33
+#line 32
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
 #line hidden
             TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "Button"});
             table6.AddRow(new string[] {
                         "Click Me"});
-#line 34
+#line 33
  testRunner.When("I click following button from Buttons page", ((string)(null)), table6, "When ");
 #line hidden
             TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                         "Message"});
             table7.AddRow(new string[] {
-                        "Click Me"});
-#line 37
+                        "You have done a dynamic click"});
+#line 36
  testRunner.Then("the message is populated in the page", ((string)(null)), table7, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verification of upload and download")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verification of uploading a file")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Elements")]
-        public virtual void VerificationOfUploadAndDownload()
+        public virtual void VerificationOfUploadingAFile()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of upload and download", ((string[])(null)));
-#line 41
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of uploading a file", ((string[])(null)));
+#line 40
 this.ScenarioSetup(scenarioInfo);
-#line 3
+#line 4
 this.FeatureBackground();
+#line 41
+ testRunner.When("I upload a file in \'upload and download\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 42
- testRunner.When("I click Upload and Download for file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 43
- testRunner.Then("upload and download of file is successful", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("file is uploaded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verification of downloading a file")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Elements")]
+        public virtual void VerificationOfDownloadingAFile()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of downloading a file", ((string[])(null)));
+#line 44
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 45
+ testRunner.When("I download a file in \'upload and download\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 46
+ testRunner.Then("file is downloaded successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

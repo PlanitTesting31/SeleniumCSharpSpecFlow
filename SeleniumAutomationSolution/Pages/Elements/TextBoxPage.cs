@@ -1,43 +1,28 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using SeleniumAutomationSolution.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using TechTalk.SpecFlow;
+
 
 namespace SeleniumAutomationSolution.Pages
 {
-    class TextBoxPage : BasePage    {
-
-        IWebDriver d;
+    public class TextBoxPage : BasePage
+    {
         public TextBoxPage(IWebDriver driver)
             : base(driver)
         {
-            this.d = driver;
-           
         }
 
         //Selectors
-        By CurrentAddress = By.CssSelector("[id='currentAddress']");
-        By PermanentAddress = By.CssSelector("[id='permanentAddress']");
-        By Submit = By.CssSelector("[id='submit']");
-        
-        By FullName = By.CssSelector("[id='userName']");
-        By Email = By.CssSelector("[id='userEmail']");
-        By TextBoxOutputName = By.CssSelector("p#name");
-        By TextBoxOutputEmail = By.CssSelector("p#email");
-        By TextBoxOutputCurrentAddress = By.CssSelector("p#currentAddress");
-        By TextBoxOutputPermanentAddress = By.CssSelector("p#permanentAddress");
+        readonly By CurrentAddress = By.CssSelector("[id='currentAddress']");
+        readonly By PermanentAddress = By.CssSelector("[id='permanentAddress']");
+        readonly By Submit = By.CssSelector("[id='submit']");
+        readonly By FullName = By.CssSelector("[id='userName']");
+        readonly By Email = By.CssSelector("[id='userEmail']");
+        readonly By TextBoxOutputName = By.CssSelector("p#name");
+        readonly By TextBoxOutputEmail = By.CssSelector("p#email");
+        readonly By TextBoxOutputCurrentAddress = By.CssSelector("p#currentAddress");
+        readonly By TextBoxOutputPermanentAddress = By.CssSelector("p#permanentAddress");
 
 
-
-      
 
         public void SetFullName(string fullName)
         {
@@ -65,18 +50,9 @@ namespace SeleniumAutomationSolution.Pages
         public void ClickSubmitButton()
         {
             IWebElement elem = UICommon.GetElement(Submit, d);
+            Submit.WaitUntilDisplayed(d);
+            UICommon.ScrollToBottom(d);
             UICommon.MoveToElement(elem, d).Click();
-        }
-
-        public void ClickOnTextBoxSubMenu(string title)
-        {
-                       
-            //IWebElement element= ElementsSubMenu(title).WaitUntilDisplayed(d);
-           // new Actions(d).MoveToElement(element).Click().Perform();
-            /* IWebElement ele = UICommon.GetElement(, d);
-             UICommon.MoveToElement(ele, d);
-             UICommon.WaitUntilDisplayed(ElementsSubMenu(title), d);
-             */
         }
 
         public string GetFullName()

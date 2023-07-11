@@ -146,28 +146,10 @@ this.FeatureBackground();
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line hidden
-            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Month",
-                        "Year",
-                        "Date"});
-            table5.AddRow(new string[] {
-                        "August",
-                        "2024",
-                        "19"});
 #line 26
- testRunner.When("I click Date Picker to select date from the table:", ((string)(null)), table5, "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Month",
-                        "Year",
-                        "Date"});
-            table6.AddRow(new string[] {
-                        "August",
-                        "2024",
-                        "19"});
-#line 29
- testRunner.Then("the date is selected correctly with data from the table:", ((string)(null)), table6, "Then ");
+ testRunner.When("I click Date Picker to select today date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 27
+ testRunner.Then("the date is selected correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -178,36 +160,14 @@ this.FeatureBackground();
         public virtual void VerificationOfSelectDateAndTime()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of select date and time", ((string[])(null)));
-#line 33
+#line 29
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
-#line hidden
-            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Month",
-                        "Year",
-                        "Date",
-                        "Time"});
-            table7.AddRow(new string[] {
-                        "August",
-                        "2024",
-                        "19",
-                        "03:30"});
-#line 34
- testRunner.When("I click Date Picker to select date and time from the table:", ((string)(null)), table7, "When ");
-#line hidden
-            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Month",
-                        "Year",
-                        "Date",
-                        "Time"});
-            table8.AddRow(new string[] {
-                        "August",
-                        "2024",
-                        "19",
-                        "3:30"});
-#line 37
- testRunner.Then("the date and time is selected correctly with data from the table:", ((string)(null)), table8, "Then ");
+#line 30
+ testRunner.When("I click Date Picker to select today date and time", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
+ testRunner.Then("the date and time is selected correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -218,24 +178,24 @@ this.FeatureBackground();
         public virtual void VerificationOfToolTipInfoContent()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of tool tip info content", ((string[])(null)));
-#line 41
+#line 33
 this.ScenarioSetup(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                         "ToolTipContent"});
-            table9.AddRow(new string[] {
+            table5.AddRow(new string[] {
                         "Contrary"});
-#line 42
- testRunner.When("I click Tool Tips and mouser over the content", ((string)(null)), table9, "When ");
+#line 34
+ testRunner.When("I click Tool Tips and mouser over the content", ((string)(null)), table5, "When ");
 #line hidden
-            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                         "ToolTipContent"});
-            table10.AddRow(new string[] {
+            table6.AddRow(new string[] {
                         "Contrary"});
-#line 45
- testRunner.Then("the info validated correctly for tool tip from the table:", ((string)(null)), table10, "Then ");
+#line 37
+ testRunner.Then("the info validated correctly for tool tip from the table:", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
