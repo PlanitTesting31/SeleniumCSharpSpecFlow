@@ -79,18 +79,18 @@ namespace SeleniumAutomationSolution.Steps
         public void ThenTheSelectedDateFromTheTableIsPopulated()
         {
             //Convert Full Month name to number
-            string dateFromTheTable = "";
+            string actualDate = "";
             int monthNumber = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
             if (monthNumber < 10)
             {
-                dateFromTheTable = "0" + monthNumber + "/" + date + "/" + year;
+                actualDate = "0" + monthNumber + "/" + date + "/" + year;
             }
             else
             {
-                dateFromTheTable = monthNumber + "/" + date + "/" + year;
+                actualDate = monthNumber + "/" + date + "/" + year;
             }
-            Console.WriteLine(dateFromTheTable);
-            Assert.AreEqual(dateFromTheTable, datePickerPage.GetSelectedDate());
+            Console.WriteLine(actualDate);
+            Assert.AreEqual(actualDate, datePickerPage.GetSelectedDate());
         }
 
         [When(@"I click Date Picker to select today date and time")]
