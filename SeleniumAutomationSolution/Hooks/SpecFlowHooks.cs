@@ -41,8 +41,8 @@ namespace SeleniumAutomationSolution.Tests
                     throw new ArgumentException("Browser Type Invalid");
             }
 
-            global.driver.Navigate().GoToUrl(TestEnvironment.GetEnvironment().Url);
             global.driver.Manage().Window.Maximize();
+            global.driver.Navigate().GoToUrl(TestEnvironment.GetEnvironment().Url);
 
         }
 
